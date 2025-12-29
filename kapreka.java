@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class kapreka {
   public static void main(String[] args) {
     Scanner input = new Scanner(System.in);
-    System.out.print("Bir sayı giriniz: ");
+    System.out.print("Please enter a number: ");
     int number = input.nextInt();
 
     System.out.println("For the input: "+number);
@@ -17,7 +17,7 @@ public class kapreka {
       int smallNum = num(smallArr);
       int highNum = num(highArr);
       number = highNum - smallNum; 
-      if((number+"").length() == 3) number*=10;
+      if((number+"").length() == 3) number*=10; // To avoid a large number of missing 0
       step++;
 
       System.out.println(step+". "+highNum +" - "+smallNum+" = "+number); 
@@ -38,13 +38,13 @@ public class kapreka {
     for(int i=0; i<arr.length-1; i++) {
       int preNum = temp[i];
       int othNum = temp[i+1];
-      if(preNum > othNum && "small".equals(smallorhigh) || preNum < othNum && "high".equals(smallorhigh)) {
+      if(preNum > othNum && "small".equals(smallorhigh) || preNum < othNum && "high".equals(smallorhigh)) { // Compare number to number on its right with the number itself.
         temp[i] = othNum;
         temp[i+1] = preNum;
       }
     }
 
-    for(int i=0;i<temp.length;i++) if(temp[i] != arr[i]) return sortArr(temp, smallorhigh);
+    for(int i=0;i<temp.length;i++) if(temp[i] != arr[i]) return sortArr(temp, smallorhigh); // This function needs to run repeatedly because it shifts the numbers "one by one".
     return temp;
   }
 
